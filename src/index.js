@@ -1,2 +1,2 @@
-const s = 123
-console.log(s)
+const s = require('./module.js')
+console.log(s.s)

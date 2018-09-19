@@ -4,11 +4,15 @@
 
 const loaderUtils = require("loader-utils");
 
-module.exports = function(content){
+module.exports = function (content) {
     // 获取用户配置的options
     const options = loaderUtils.getOptions(this);
+    // { test: 1 }
     console.log('***options***', options)
+    // const s = require('./module.js')
+    // console.log(s.s)
     console.log('***content***', content)
+    // test
     console.log('***this data***', this.data.value)
     return "{};" + content
 }
