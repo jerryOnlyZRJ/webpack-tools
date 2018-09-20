@@ -1,4 +1,5 @@
 // webpack向下兼容，所以监听钩子可以使用plugin方法
+const pluginName = 'MyPlugin'
 class MyPlugin {
     // 传入webpack config中的plugin配置参数
     constructor(options) {
@@ -9,115 +10,107 @@ class MyPlugin {
     apply(compiler) {
         console.log('@plugin apply');
 
-        compiler.plugin('environment', (options) => {
+        compiler.hooks.environment.tap(pluginName, (options) => {
             console.log('@environment');
         });
 
-        compiler.plugin('after-environment', (options) => {
+        compiler.hooks.afterEnvironment.tap(pluginName, (options) => {
             console.log('@after-environment');
         });
 
-        compiler.plugin('entry-option', (options) => {
+        compiler.hooks.entryOption.tap(pluginName, (options) => {
             console.log('@entry-option');
         });
 
-        compiler.plugin('after-plugins', (options) => {
+        compiler.hooks.afterPlugins.tap(pluginName, (options) => {
             console.log('@after-plugins');
         });
 
-        compiler.plugin('after-resolvers', (options) => {
+        compiler.hooks.afterResolvers.tap(pluginName, (options) => {
             console.log('@after-resolvers');
         });
 
-        compiler.plugin('before-run', (options, callback) => {
+        compiler.hooks.beforeRun.tap(pluginName, (options) => {
             console.log('@before-run');
-            callback();
         });
 
-        compiler.plugin('run', (options, callback) => {
+        compiler.hooks.run.tap(pluginName, (options) => {
             console.log('@run');
-            callback();
         });
 
-        compiler.plugin('watch-run', (options, callback) => {
+        compiler.hooks.watchRun.tap(pluginName, (options) => {
             console.log('@watch-run');
-            callback();
         });
 
-        compiler.plugin('normal-module-factory', (options) => {
+        compiler.hooks.normalModuleFactory.tap(pluginName, (options) => {
             console.log('@normal-module-factory');
         });
 
-        compiler.plugin('context-module-factory', (options) => {
+        compiler.hooks.contextModuleFactory.tap(pluginName, (options) => {
             console.log('@context-module-factory');
         });
 
-        compiler.plugin('before-compile', (options, callback) => {
+        compiler.hooks.beforeCompile.tap(pluginName, (options) => {
             console.log('@before-compile');
-            callback();
+            
         });
 
-        compiler.plugin('compile', (options) => {
+        compiler.hooks.compile.tap(pluginName, (options) => {
             console.log('@compile');
         });
 
-        compiler.plugin('this-compilation', (options) => {
+        compiler.hooks.thisCompilation.tap(pluginName, (options) => {
             console.log('@this-compilation');
         });
 
-        compiler.plugin('compilation', (options) => {
+        compiler.hooks.compilation.tap(pluginName, (options) => {
             console.log('@compilation');
         });
 
-        compiler.plugin('make', (options, callback) => {
+        compiler.hooks.make.tap(pluginName, (options) => {
             console.log('@make');
-            callback();
         });
 
-        compiler.plugin('compilation', (compilation) => {
+        compiler.hooks.compilation.tap(pluginName, (compilation) => {
 
-            compilation.plugin('build-module', (options) => {
+            compilation.hooks.buildModule.tap(pluginName, (options) => {
                 console.log('@build-module');
             });
 
-            compilation.plugin('normal-module-loader', (options) => {
+            compilation.hooks.normalModuleLoader.tap(pluginName, (options) => {
                 console.log('@normal-module-loader');
             });
 
-            compilation.plugin('seal', (options) => {
+            compilation.hooks.seal.tap(pluginName, (options) => {
                 console.log('@seal');
             });
         });
 
-        compiler.plugin('after-compile', (options, callback) => {
+        compiler.hooks.afterCompile.tap(pluginName, (options) => {
             console.log('@after-compile');
-            callback();
         });
 
-        compiler.plugin('should-emit', (options) => {
+        compiler.hooks.shouldEmit.tap(pluginName, (options) => {
             console.log('@should-emit');
         });
 
-        compiler.plugin('emit', (options, callback) => {
+        compiler.hooks.emit.tap(pluginName, (options) => {
             console.log('@emit');
-            callback();
         });
 
-        compiler.plugin('after-emit', (options, callback) => {
+        compiler.hooks.afterEmit.tap(pluginName, (options) => {
             console.log('@after-emit');
-            callback();
         });
 
-        compiler.plugin('done', (options) => {
+        compiler.hooks.done.tap(pluginName, (options) => {
             console.log('@done');
         });
 
-        compiler.plugin('failed', (options, callback) => {
+        compiler.hooks.failed.tap(pluginName, (options) => {
             console.log('@failed');
-            callback();
         });
 
-        compiler.plugin('invalid', (options) => {
+        compiler.hooks.invalid.tap(pluginName, (options) => {
             console.log('@invalid');
         });
     }

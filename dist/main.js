@@ -90,10 +90,11 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("{};const s = __webpack_require__(/*! ./module.js */ \"./src/module.js\")\nconsole.log(s.s)\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module.js */ \"./src/module.js\");\n/* harmony import */ var _module_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_module_js__WEBPACK_IMPORTED_MODULE_0__);\n{};\nconsole.log(_module_js__WEBPACK_IMPORTED_MODULE_0___default.a.s);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -104,7 +105,7 @@ eval("{};const s = __webpack_require__(/*! ./module.js */ \"./src/module.js\")\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("{};const s = 123\nconsole.log(s)\nmodule.exports = {\n    s: s\n}\n\n//# sourceURL=webpack:///./src/module.js?");
+eval("{};var s = 123;\nconsole.log(s);\nmodule.exports = {\n  s: s\n};\n\n//# sourceURL=webpack:///./src/module.js?");
 
 /***/ })
 

@@ -1,2 +1,2 @@
-const s = require('./module.js')
+import s from './module.js'
 console.log(s.s)
