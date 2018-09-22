@@ -1,5 +1,6 @@
 // webpack向下兼容，所以监听钩子可以使用plugin方法
 const pluginName = 'MyPlugin'
+const { SyncHook } = require("tapable");
 class MyPlugin {
     // 传入webpack config中的plugin配置参数
     constructor(options) {
@@ -9,8 +10,12 @@ class MyPlugin {
 
     apply(compiler) {
         console.log('@plugin apply');
+        // 初始化自定义事件
+        compiler.hooks.myPlugin = new SyncHook(['data'])
 
         compiler.hooks.environment.tap(pluginName, (options) => {
+            //广播自定义事件
+            compiler.hooks.myPlugin.call("It's my plugin.")
             console.log('@environment');
         });
 
@@ -52,7 +57,7 @@ class MyPlugin {
 
         compiler.hooks.beforeCompile.tap(pluginName, (options) => {
             console.log('@before-compile');
-            
+
         });
 
         compiler.hooks.compile.tap(pluginName, (options) => {
