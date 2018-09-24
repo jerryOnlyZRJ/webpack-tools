@@ -1,5 +1,6 @@
 // webpack向下兼容，所以监听钩子可以使用plugin方法
 const pluginName = 'MyPlugin'
+//tapable是webpack自带的package，是webpack的核心实现
 const { SyncHook } = require("tapable");
 class MyPlugin {
     // 传入webpack config中的plugin配置参数
@@ -13,108 +14,113 @@ class MyPlugin {
         // 初始化自定义事件
         compiler.hooks.myPlugin = new SyncHook(['data'])
 
-        compiler.hooks.environment.tap(pluginName, (options) => {
+        compiler.hooks.environment.tap(pluginName, () => {
             //广播自定义事件
             compiler.hooks.myPlugin.call("It's my plugin.")
             console.log('@environment');
         });
 
-        compiler.hooks.afterEnvironment.tap(pluginName, (options) => {
+        compiler.hooks.afterEnvironment.tap(pluginName, () => {
             console.log('@after-environment');
         });
 
-        compiler.hooks.entryOption.tap(pluginName, (options) => {
+        compiler.hooks.entryOption.tap(pluginName, () => {
             console.log('@entry-option');
         });
 
-        compiler.hooks.afterPlugins.tap(pluginName, (options) => {
+        compiler.hooks.afterPlugins.tap(pluginName, (compiler) => {
             console.log('@after-plugins');
         });
 
-        compiler.hooks.afterResolvers.tap(pluginName, (options) => {
+        compiler.hooks.afterResolvers.tap(pluginName, (compiler) => {
             console.log('@after-resolvers');
         });
 
-        compiler.hooks.beforeRun.tap(pluginName, (options) => {
+        compiler.hooks.beforeRun.tap(pluginName, (compiler) => {
             console.log('@before-run');
         });
 
-        compiler.hooks.run.tap(pluginName, (options) => {
+        compiler.hooks.run.tap(pluginName, (compiler) => {
             console.log('@run');
         });
 
-        compiler.hooks.watchRun.tap(pluginName, (options) => {
+        compiler.hooks.watchRun.tap(pluginName, (compiler) => {
             console.log('@watch-run');
         });
 
-        compiler.hooks.normalModuleFactory.tap(pluginName, (options) => {
+        compiler.hooks.normalModuleFactory.tap(pluginName, (normalModuleFactory) => {
+            // normalModuleFactory like compilation, extend Tapable
             console.log('@normal-module-factory');
         });
 
-        compiler.hooks.contextModuleFactory.tap(pluginName, (options) => {
+        compiler.hooks.contextModuleFactory.tap(pluginName, (ContextModuleFactory) => {
             console.log('@context-module-factory');
         });
 
-        compiler.hooks.beforeCompile.tap(pluginName, (options) => {
+        compiler.hooks.beforeCompile.tap(pluginName, (compilationParams) => {
             console.log('@before-compile');
 
         });
 
-        compiler.hooks.compile.tap(pluginName, (options) => {
+        compiler.hooks.compile.tap(pluginName, (compilationParams) => {
             console.log('@compile');
         });
 
-        compiler.hooks.thisCompilation.tap(pluginName, (options) => {
+        compiler.hooks.thisCompilation.tap(pluginName, (compilationParams) => {
             console.log('@this-compilation');
         });
 
-        compiler.hooks.compilation.tap(pluginName, (options) => {
+        compiler.hooks.compilation.tap(pluginName, (compilation) => {
             console.log('@compilation');
         });
 
-        compiler.hooks.make.tap(pluginName, (options) => {
+        compiler.hooks.make.tap(pluginName, (compilation) => {
             console.log('@make');
         });
 
         compiler.hooks.compilation.tap(pluginName, (compilation) => {
-
-            compilation.hooks.buildModule.tap(pluginName, (options) => {
+            //使用对应loader去编译一个module
+            // 包含了module的resource（资源路径），loaders（经过的loaders）等信息
+            compilation.hooks.buildModule.tap(pluginName, (module) => {
                 console.log('@build-module');
             });
 
-            compilation.hooks.normalModuleLoader.tap(pluginName, (options) => {
+            compilation.hooks.normalModuleLoader.tap(pluginName, (loaderContext, module) => {
                 console.log('@normal-module-loader');
             });
-
-            compilation.hooks.seal.tap(pluginName, (options) => {
+            
+            //所有module都通过依赖转换完成
+            compilation.hooks.seal.tap(pluginName, () => {
                 console.log('@seal');
             });
         });
 
-        compiler.hooks.afterCompile.tap(pluginName, (options) => {
+        compiler.hooks.afterCompile.tap(pluginName, (compilation) => {
             console.log('@after-compile');
         });
 
-        compiler.hooks.shouldEmit.tap(pluginName, (options) => {
+        compiler.hooks.shouldEmit.tap(pluginName, (compilation) => {
             console.log('@should-emit');
         });
 
-        compiler.hooks.emit.tap(pluginName, (options) => {
+        // 文件输出钩子，最后一个可以修改输出数据的地方
+        compiler.hooks.emit.tap(pluginName, (compilation) => {
             console.log('@emit');
         });
 
-        compiler.hooks.afterEmit.tap(pluginName, (options) => {
+        compiler.hooks.afterEmit.tap(pluginName, (compilation) => {
             console.log('@after-emit');
         });
 
-        compiler.hooks.done.tap(pluginName, (options) => {
+        compiler.hooks.done.tap(pluginName, (stats) => {
             console.log('@done');
         });
 
-        compiler.hooks.failed.tap(pluginName, (options) => {
+        compiler.hooks.failed.tap(pluginName, (error) => {
             console.log('@failed');
         });
 
+        //webpack watch被停止
         compiler.hooks.invalid.tap(pluginName, (options) => {
             console.log('@invalid');
         });
