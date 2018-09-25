@@ -69,12 +69,12 @@ class MyPlugin {
             console.log('@this-compilation');
         });
 
-        compiler.hooks.compilation.tap(pluginName, (compilation) => {
-            console.log('@compilation');
-        });
-
         compiler.hooks.make.tap(pluginName, (compilation) => {
             console.log('@make');
+        });
+
+        compiler.hooks.compilation.tap(pluginName, (compilation) => {
+            console.log('@compilation');
         });
 
         compiler.hooks.compilation.tap(pluginName, (compilation) => {
