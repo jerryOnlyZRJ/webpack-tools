@@ -59,7 +59,6 @@ class MyPlugin {
 
         compiler.hooks.beforeCompile.tap(pluginName, (compilationParams) => {
             console.log('@before-compile');
-
         });
 
         compiler.hooks.compile.tap(pluginName, (compilationParams) => {
