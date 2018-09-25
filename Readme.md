@@ -4,6 +4,14 @@ webpack运行机制剖析参照项目
 
 ## 构建命令
 
+**clone项目后先安装所需依赖**
+
+```
+$ npm i
+```
+
+如需执行构建，可执行构建命令：
+
 ```
 $ npm run build
 ```
@@ -17,7 +25,6 @@ $ npm run build
 ├── loaders         自定义loader
 ├── plugins        自定义插件
 ├── src          模块等资源文件
-├── node_modules  依赖包
 ├── package.json
 ├── README.md       说明文档
 ├── webpack.config.js       webpack配置文件
