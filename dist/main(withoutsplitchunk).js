@@ -1,7 +1,10 @@
-(function (modules) { // webpackBootstrap
+(function (modules) {
   // The module cache
+  //  缓存已经加载过的module的exports
+  //  module在exports之前还是有js需要执行的，缓存的目的就是优化这一过程
   var installedModules = {};
 
+  // 模拟CommonJS require
   // The require function
   function __webpack_require__(moduleId) {
 
@@ -16,6 +19,8 @@
       exports: {}
     };
 
+    // 执行单个module JS Function并填充installedModules与module
+    // function mudule(module, __webpack_exports__[, __webpack_require__])
     // Execute the module function
     modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
@@ -78,15 +83,17 @@
   // __webpack_public_path__
   __webpack_require__.p = "";
 
+  // 加载Entry并返回Entry的exports
   // Load entry module and return exports
   return __webpack_require__(__webpack_require__.s = "./src/index.js");
 })
+  // modules其实就是一个对象，键是模块的路径，值就是模块的JS Function
   ({
-    "./src/index.js": (function (module, __webpack_exports__, __webpack_require__) {
+    "./src/index.js": function (module, __webpack_exports__, __webpack_require__) {
       "use strict";
       eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module.js */ \"./src/module.js\");\n/* harmony import */ var _module_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_module_js__WEBPACK_IMPORTED_MODULE_0__);\n{};\nconsole.log(_module_js__WEBPACK_IMPORTED_MODULE_0___default.a.s);\n\n//# sourceURL=webpack:///./src/index.js?");
-    }),
-    "./src/module.js": (function (module, exports) {
+    },
+    "./src/module.js": function (module, exports) {
       eval("{};var s = 123;\nconsole.log(s);\nmodule.exports = {\n  s: s\n};\n\n//# sourceURL=webpack:///./src/module.js?");
-    })
+    }
   });
