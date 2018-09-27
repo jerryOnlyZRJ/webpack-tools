@@ -30,7 +30,7 @@ class SyncHook{
 }
 ```
 
-在 [webpack hook](https://webpack.js.org/api/compiler-hooks/) 上的所有钩子都是 Tapable 的示例，所以我们可以通过 **tap** 方法监听事件，使用 **call** 方法广播事件就像官方文档介绍的这样：
+在 [webpack hook](https://webpack.js.org/api/compiler-hooks/) 上的所有钩子都是 Tapable 的示例，所以我们可以通过 **tap** 方法监听事件，使用 **call** 方法广播事件，就像官方文档介绍的这样：
 
 ```js
 compiler.hooks.someHook.tap(/* ... */);
