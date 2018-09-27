@@ -15,8 +15,6 @@ class MyPlugin {
         compiler.hooks.myPlugin = new SyncHook(['data'])
 
         compiler.hooks.environment.tap(pluginName, () => {
-            //广播自定义事件
-            compiler.hooks.myPlugin.call("It's my plugin.")
             console.log('@environment');
         });
 
@@ -41,6 +39,8 @@ class MyPlugin {
         });
 
         compiler.hooks.run.tap(pluginName, (compiler) => {
+            //广播自定义事件
+            compiler.hooks.myPlugin.call("It's my plugin.")
             console.log('@run');
         });
 
