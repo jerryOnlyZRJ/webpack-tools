@@ -4,7 +4,7 @@
 
 本次webpack系列文章可参照项目：https://github.com/jerryOnlyZRJ/webpack-loader 。
 
-本系列版本使用的webpack版本为4，如有其他版本问题可提issue或者直接在文章下方的评论区留言。
+本系列文章使用的webpack版本为4，如有其他版本问题可提issue或者直接在文章下方的评论区留言。
 
 ## 0.温习一下webpack事件流
 
