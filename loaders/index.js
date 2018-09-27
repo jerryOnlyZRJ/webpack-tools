@@ -4,7 +4,11 @@
 
 const loaderUtils = require("loader-utils");
 
-module.exports = function (content) {
+/**
+ * loader Function
+ * @param {String} content 文件内容
+ */
+module.exports = async function (content) {
     // 获取用户配置的options
     const options = loaderUtils.getOptions(this);
     /**
@@ -27,6 +31,8 @@ module.exports = function (content) {
     // 但日常开发中我们尽可能使用this.callback
     // ***同步***
     // return "{};" + content
+    // 或者
+    // this.callback(null, "{};" + content)
     // this.callback(
     //     // 当无法转换原内容时，给 Webpack 返回一个 Error
     //     err: Error || null,
@@ -38,17 +44,23 @@ module.exports = function (content) {
     //     // 以方便之后需要 AST 的 Loader 复用该 AST，以避免重复生成 AST，提升性能
     //     abstractSyntaxTree?: AST
     // );
-    // this.callback(null, "{};" + content)
     //***异步***
-    var callback = this.async()
-    setTimeout(() => {
-        //callback传值同理this.callback 
-        callback(null, "{};" + content)
-    }, 1000);
+    function timeout(delay) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("{};" + content)
+            }, delay)
+        })
+    }
+    // const data = await timeout(1000)
+    // return data
+    const callback = this.async()
+    timeout(1000).then(data => {
+        callback(null, data)
+    })
 }
 
 module.exports.pitch = (remaining, preceding, data) => {
-    // remaining: loader匹配到的资源文件路径
     console.log('***remaining***', remaining)
     console.log('***preceding***', preceding)
     // data会被挂在到当前loader的上下文this上在loaders之间传递

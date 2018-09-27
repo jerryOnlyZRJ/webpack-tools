@@ -4,8 +4,11 @@
   //  module在exports之前还是有js需要执行的，缓存的目的就是优化这一过程
   var installedModules = {};
 
-  // 模拟CommonJS require
   // The require function
+  /**
+   * 模拟CommonJS require
+   * @param {String} moduleId 模块路径
+   */
   function __webpack_require__(moduleId) {
 
     // Check if module is in cache

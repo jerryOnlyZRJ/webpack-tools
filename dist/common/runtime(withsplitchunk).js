@@ -1,5 +1,11 @@
+ // 当配置了splitChunk之后，此时IIFE的形参modules就成了摆设，
+ // 真正的module还有chunk都被存放在了一个挂载在window上的全局数组`webpackJsonp`上了
  (function(modules) { // webpackBootstrap
- 	// install a JSONP callback for chunk loading
+	 // install a JSONP callback for chunk loading
+	 /**
+	  * webpackJsonpCallback 处理chunk数据
+	  * @param {Array} data  [[chunkId(chunk名称)], modules(Object), [...other chunks(所有需要的chunk)]]
+	  */
  	function webpackJsonpCallback(data) {
  		var chunkIds = data[0];
  		var moreModules = data[1];
@@ -52,6 +58,7 @@
  	// The module cache
  	var installedModules = {};
 
+	// 缓存chunk，同理module
  	// object to store loaded and loading chunks
  	// undefined = chunk not loaded, null = chunk preloaded/prefetched
  	// Promise = chunk loading, 0 = chunk loaded
@@ -63,7 +70,6 @@
 
  	// The require function
  	function __webpack_require__(moduleId) {
-
  		// Check if module is in cache
  		if(installedModules[moduleId]) {
  			return installedModules[moduleId].exports;
@@ -74,13 +80,10 @@
  			l: false,
  			exports: {}
  		};
-
  		// Execute the module function
  		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
  		// Flag the module as loaded
  		module.l = true;
-
  		// Return the exports of the module
  		return module.exports;
  	}

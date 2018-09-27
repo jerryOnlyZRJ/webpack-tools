@@ -1,6 +1,6 @@
 const path = require('path')
 const MyPlugin = require('./plugins/myplugin-4.js')
-const Watching4MyPlugin = require('./plugins/testplugin.js')
+const Listen4Myplugin = require('./plugins/listen4myplugin.js')
 
 module.exports = {
     mode: 'development',
@@ -45,9 +45,7 @@ module.exports = {
         }
     },
     plugins: [
-        new MyPlugin({
-            test: 1
-        }),
-        new Watching4MyPlugin()
+        new MyPlugin("Plugin is instancing."),
+        new Listen4Myplugin()
     ]
 }
