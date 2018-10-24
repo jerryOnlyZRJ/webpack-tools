@@ -3,12 +3,16 @@
 // 如果use是个loaders数组，则从后往前执行，pitch会被挂载在数组末端，最先执行
 
 const loaderUtils = require("loader-utils");
+const acorn = require("acorn")
 
 /**
  * loader Function
  * @param {String} content 文件内容
  */
 module.exports = async function (content) {
+    // AST解析过程模拟
+    const AST_Object = acorn.parse(content)
+    console.log("AST静态语法树", AST_Object)
     // 获取用户配置的options
     const options = loaderUtils.getOptions(this);
     /**
