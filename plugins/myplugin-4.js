@@ -35,7 +35,7 @@ class MyPlugin {
         });
 
         compiler.hooks.beforeRun.tap(pluginName, (compiler) => {
-            console.log('@before-run');
+            console.log('@before-run', compiler.options.plugins[0]);
         });
 
         compiler.hooks.run.tap(pluginName, (compiler) => {

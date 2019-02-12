@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("{};var s = __webpack_require__(/*! ./module.js */ \"./src/module.js\");\n\nconsole.log(s.s);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("{}\n;\n\nvar s = __webpack_require__(/*! ./module.js */ \"./src/module.js\");\n\nconsole.log(s.s);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -18,7 +18,7 @@ eval("{};var s = __webpack_require__(/*! ./module.js */ \"./src/module.js\");\n\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("{};var s = 123;\nconsole.log(s);\nmodule.exports = {\n  s: s\n};\n\n//# sourceURL=webpack:///./src/module.js?");
+eval("{}\n;\nvar s = 123;\nconsole.log(s);\nmodule.exports = {\n  s: s\n};\n\n//# sourceURL=webpack:///./src/module.js?");
 
 /***/ })
 
