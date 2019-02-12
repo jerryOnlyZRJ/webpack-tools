@@ -1,3 +1,7 @@
+/**
+ * @description
+ * Webpack3自定义插件编写方式
+ */
 class MyPlugin {
     // 传入webpack config中的plugin配置参数
     constructor(options) {

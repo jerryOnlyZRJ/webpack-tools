@@ -2,6 +2,12 @@
 const pluginName = 'MyPlugin'
 //tapable是webpack自带的package，是webpack的核心实现
 const { SyncHook } = require("tapable");
+
+
+/**
+ * @description
+ * Webpack4插件编写方式
+ */
 class MyPlugin {
     // 传入webpack config中的plugin配置参数
     constructor(options) {
@@ -12,6 +18,8 @@ class MyPlugin {
     apply(compiler) {
         console.log('@plugin apply');
         // 初始化自定义事件
+        // 构造函数初始化时往字符串数组传几项值call的时候只能传几个参数
+        // 传入的参数需要和new实例的时候保持一致，否则获取不到多传的参数（undefined）
         compiler.hooks.myPlugin = new SyncHook(['data'])
 
         compiler.hooks.environment.tap(pluginName, () => {
