@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "acorn": "^6.0.2",
     "babel-loader": "^8.0.2",
     "escodegen": "^1.11.0",

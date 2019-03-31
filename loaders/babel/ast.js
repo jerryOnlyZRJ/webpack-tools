@@ -24,7 +24,7 @@ module.exports = {
                 "raw": "123"
             }
         }],
-        "kind": "var"
+        "kind": "const"
     }, {
         "type": "ExpressionStatement",
         "start": 13,
